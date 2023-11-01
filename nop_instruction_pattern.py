@@ -6,6 +6,29 @@ import ida_ua as idaua
 
 NOP = b'\x1F\x20\x03\xD5'
 
+def read_instruction(address):
+    mnem = idc.print_insn_mnem(address)
+    op1 = idc.print_operand(address, 0)
+    op2 = idc.print_operand(address, 1)
+    op3 = idc.print_operand(address, 2)
+    op4 = idc.print_operand(address, 3)
+    op5 = idc.print_operand(address, 4)
+
+    # generate whole instruction
+    inst = mnem
+    if op1 != '':
+        inst += ' ' + op1
+    if op2 != '':
+        inst += ', ' + op2
+    if op3 != '':
+        inst += ', ' + op3
+    if op4 != '':
+        inst += ', ' + op4
+    if op5 != '':
+        inst += ', ' + op5
+    
+    return inst
+
 # find consecutive mnemonic that matches the given pattern and patch them with NOP's
 def nop_mnem_pattern(pattern):
     print("[*] Starting...")
@@ -37,29 +60,6 @@ def nop_mnem_pattern(pattern):
             print("[+] All patches have been applied!")
         else:
             print("[-] No matches were found")
-
-def read_instruction(address):
-    mnem = idc.print_insn_mnem(address)
-    op1 = idc.print_operand(address, 0)
-    op2 = idc.print_operand(address, 1)
-    op3 = idc.print_operand(address, 2)
-    op4 = idc.print_operand(address, 3)
-    op5 = idc.print_operand(address, 4)
-
-    # generate whole instruction
-    inst = mnem
-    if op1 != '':
-        inst += ' ' + op1
-    if op2 != '':
-        inst += ', ' + op2
-    if op3 != '':
-        inst += ', ' + op3
-    if op4 != '':
-        inst += ', ' + op4
-    if op5 != '':
-        inst += ', ' + op5
-    
-    return inst
 
 # matches consective instructions and patch them with NOP's
 def nop_insn_pattern(pattern):
