@@ -34,11 +34,6 @@ def nop_mnem_pattern(pattern):
                 for i in range(len(pattern)):
                     address = match_start_address + (i * inst_size)
                     idabytes.patch_bytes(address, NOP)
-                    # if pattern[i] == None: # the last item in the pattern doesn't need to be patched, as it is not an instruction
-                    #     break
-                    # if pattern[i] == "BR":
-                    #     ida_bytes.patch_bytes(address, BRANCH)
-                    # else:
             print("[+] All patches have been applied!")
         else:
             print("[-] No matches were found")
@@ -84,7 +79,6 @@ def nop_insn_pattern(pattern):
                         _address = int(address + (j * inst_size))
                         _cur_inst = read_instruction(_address)
                         if pattern[j] not in _cur_inst:
-                            #print("{} == {} ? {}".format(_cur_inst, pattern[j], pattern[j] in _cur_inst))
                             break
                     else:
                         matches.append(address)
@@ -98,6 +92,7 @@ def nop_insn_pattern(pattern):
         else:
             print("[-] No matches were found")
 
+# mnemonic patterns to patch, None stands for literal pool (data in middle of __text section code as it can't be disassembled and the disassembler returns None instead of the given mnemonic)
 nop_mnem_pattern(["STUR", "LDUR", "ADR", "LDRSW", "ADD", "AND", "MOV", "MUL", "EOR", "ADD", "BR", None])
 nop_mnem_pattern(["STR", "LDR", "ADR", "LDRSW", "ADD", "AND", "MOV", "MUL", "EOR", "ADD", "BR", None])
 nop_mnem_pattern(["STUR", "LDUR", "ADR", "AND", "MOV", "MUL", "EOR", "ADD", "BR"])
