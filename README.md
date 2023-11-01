@@ -1,5 +1,5 @@
 # IDAPython---NOP-Instruction-pattern
-IDA Python script to nop instructions that matches the given pattern
+IDA Python script to nop instructions that matches arbitrary assembly pattern
 
 # Architecture
 It can match whatever assembly code you write in any architecture, the thing is the NOP bytes is written for little-endian ARM64 (0x1F2003D5), although you can edit it to fit any other instruction of your like. also the iteration through the __text section blob is spected to follow 4 bytes for every instructions
