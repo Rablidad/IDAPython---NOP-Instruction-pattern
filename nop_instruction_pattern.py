@@ -141,7 +141,8 @@ nop_insn_pattern(["ADR X9",
                  "B", # branch 
                  "SUB X9, X9, X11", 
                  "ADD X9, X9, X11", 
-                 "BR X9"])
+                 "BR X9",
+                 "ADD SP, SP, #8"])
 
 ## new pattern
 ## __text:000000000005965C FF 0F 00 F9                       STR             XZR, [SP,#0x50+var_38]
