@@ -114,6 +114,7 @@ def nop_insn_pattern(pattern):
 nop_mnem_pattern(["STUR", "LDUR", "ADR", "LDRSW", "ADD", "AND", "MOV", "MUL", "EOR", "ADD", "BR", None])
 nop_mnem_pattern(["STR", "LDR", "ADR", "LDRSW", "ADD", "AND", "MOV", "MUL", "EOR", "ADD", "BR", None])
 nop_mnem_pattern(["STUR", "LDUR", "ADR", "AND", "MOV", "MUL", "EOR", "ADD", "BR", None])
+nop_mnem_pattern(["STR", "LDR", "ADR", "AND", "MOV", "MUL", "EOR", "ADD", "BR"])
 
 
 ## new pattern
